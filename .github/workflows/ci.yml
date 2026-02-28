@@ -43,4 +43,4 @@ jobs:
         run: |
           pip install mypy
           # 检查类型，但忽略第三方库缺失，不阻断 CI
-          mypy rag_qa/ --ignore-missing-imports --exit-zero
+          mypy rag_qa/ --ignore-missing-imports || true
