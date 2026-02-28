@@ -1,0 +1,17 @@
+pymysql
+redis
+rank_bm25
+numpy
+jieba
+pandas
+transformers
+torch
+scikit-learn
+langchain
+langchain_community
+sentence_transformers
+pymilvus
+openai
+configparser
+locust
+websocket-client
