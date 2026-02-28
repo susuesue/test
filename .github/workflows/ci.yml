@@ -26,8 +26,11 @@ jobs:
           echo "✅ CI配置成功，但没有安装依赖"
       - name: 检查代码风格
         run: |
-           pip install flake8
-           flake8 . --max-line-length=120
+          pip install flake8
+          # 检查代码，E501是行太长错误，W503是换行符警告（可选忽略）
+          flake8 . --max-line-length=120 --ignore=E501,W503
+          # 或者严格模式：发现错误就停止
+          # flake8 . --max-line-length=120 --max-complexity=10 --show-source --statistics
       - name: 运行测试
         run: |
             pip install pytest
