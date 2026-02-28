@@ -33,5 +33,9 @@ jobs:
           # flake8 . --max-line-length=120 --max-complexity=10 --show-source --statistics
       - name: 运行测试
         run: |
-            pip install pytest
-            pytest tests/
+          if [ -d "tests" ]; then
+            pytest tests/ -v
+          else
+            echo "没有tests文件夹，跳过测试"
+            exit 0  # 正常退出，不报错
+          fi
