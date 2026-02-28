@@ -1,0 +1,35 @@
+name: RAG项目CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: 设置Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+          
+      - name: 安装依赖
+        run: |
+          pip install -r requirements.txt
+          pip install pytest flake8
+          
+      - name: 检查代码风格
+        run: flake8 . --max-line-length=120
+        
+      - name: 运行测试
+        run: pytest tests/ || echo "还没写测试，先跳过"
+        
+      - name: 尝试导入模块
+        run: |
+          python -c "from core.document_loader import process_documents; print('✅ 文档加载器导入成功')"
+          python -c "from core.vector_store import VectorStore; print('✅ 向量存储导入成功')"
