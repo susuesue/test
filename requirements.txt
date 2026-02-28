@@ -7,3 +7,4 @@ torch
 numpy
 pytest
 flake8
+panda
