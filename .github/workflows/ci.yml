@@ -39,3 +39,7 @@ jobs:
             echo "没有tests文件夹，跳过测试"
             exit 0  # 正常退出，不报错
           fi
+      - name: 类型检查
+        run: |
+          pip install mypy
+          mypy core/
